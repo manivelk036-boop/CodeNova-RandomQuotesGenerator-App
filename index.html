@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Quotidian: Random Quote Generator</title>
+  <meta name="description" content="Random quotes that work offline. Save your favorites on this device.">
+  <meta name="theme-color" content="#141029">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <h1 class="brand">Quotidian</h1>
+      <div class="top-right">
+        <span id="net" class="net" role="status" aria-live="polite">Online</span>
+        <button id="installBtn" class="ghost" hidden>Install app</button>
+      </div>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="Views">
+      <button role="tab" id="tab-quote" aria-selected="true" aria-controls="view-quote">Quote</button>
+      <button role="tab" id="tab-favs" aria-selected="false" aria-controls="view-favs">
+        Favorites <span id="favCount" class="count">0</span>
+      </button>
+    </nav>
+
+    <main>
+      <section id="view-quote" role="tabpanel" aria-labelledby="tab-quote">
+        <div class="stage">
+          <article id="card" class="card" aria-live="polite">
+            <span id="genre" class="genre"></span>
+            <blockquote id="text" class="qtext"></blockquote>
+            <p id="author" class="author"></p>
+          </article>
+        </div>
+
+        <div class="actions">
+          <button id="newBtn" class="primary">New quote</button>
+          <button id="favBtn" class="secondary" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.7 4.5 6.3 4.5c2 0 3.7 1.1 4.7 2.7h2c1-1.6 2.7-2.7 4.7-2.7 3.6 0 5.4 3.9 3.9 7.3C19.500 16.400 12 21 12 21z"/></svg>
+            <span id="favLabel">Save</span>
+          </button>
+          <button id="copyBtn" class="ghost" aria-label="Copy quote">Copy</button>
+        </div>
+        <p class="hint">Press <kbd>N</kbd> or the space bar for another quote.</p>
+      </section>
+
+      <section id="view-favs" role="tabpanel" aria-labelledby="tab-favs" hidden>
+        <ul id="favList" class="favlist"></ul>
+        <div id="empty" class="empty" hidden>
+          <p class="empty-title">No saved quotes yet</p>
+          <p>Tap Save on any quote and it will be kept here, even offline.</p>
+          <button id="goQuote" class="primary">Find a quote</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
